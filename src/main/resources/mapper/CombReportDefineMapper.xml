@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tv.vego.dp.mapper.CombReportDefineMapper">
+    <resultMap id="BaseResultMap" type="tv.vego.dp.model.CombReportDefine">
+        <id column="comb_id" property="combId" jdbcType="INTEGER"/>
+        <result column="catalog_id" property="catalogId" jdbcType="INTEGER"/>
+        <result column="comb_name" property="combName" jdbcType="VARCHAR"/>
+        <result column="layout_info" property="layoutInfo" jdbcType="VARCHAR"/>
+        <result column="comb_desc" property="combDesc" jdbcType="VARCHAR"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tv.vego.dp.mapper.QuartzTaskParamMapper">
+    <resultMap id="BaseResultMap" type="tv.vego.dp.model.QuartzTaskParam">
+        <id column="param_id" property="paramId" jdbcType="INTEGER"/>
+        <result column="task_id" property="taskId" jdbcType="INTEGER"/>
+        <result column="param_name" property="paramName" jdbcType="VARCHAR"/>
+        <result column="param_value" property="paramValue" jdbcType="VARCHAR"/>
+        <result column="param_type" property="paramType" jdbcType="VARCHAR"/>
+    </resultMap>
+
+</mapper>

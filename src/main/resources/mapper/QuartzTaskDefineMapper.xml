@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tv.vego.dp.mapper.QuartzTaskDefineMapper">
+    <resultMap id="BaseResultMap" type="tv.vego.dp.model.QuartzTaskDefine">
+        <id column="task_id" property="taskId" jdbcType="INTEGER"/>
+        <result column="task_name" property="taskName" jdbcType="VARCHAR"/>
+        <result column="task_type" property="taskType" jdbcType="INTEGER"/>
+        <result column="task_path" property="taskPath" jdbcType="VARCHAR"/>
+        <result column="cron_expression" property="cronExpression" jdbcType="VARCHAR"/>
+        <result column="task_status" property="taskStatus" jdbcType="INTEGER"/>
+        <result column="failed_retry" property="failedRetry" jdbcType="INTEGER"/>
+        <result column="retry_times" property="retryTimes" jdbcType="INTEGER"/>
+        <result column="retry_interval" property="retryInterval" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+</mapper>

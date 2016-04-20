@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tv.vego.dp.mapper.ReportDefineMapper">
+    <resultMap id="BaseResultMap" type="tv.vego.dp.model.ReportDefine">
+        <id column="report_id" property="reportId" jdbcType="INTEGER"/>
+        <result column="ds_id" property="dsId" jdbcType="INTEGER"/>
+        <result column="report_name" property="reportName" jdbcType="VARCHAR"/>
+        <result column="report_sql" property="reportSql" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP"/>
+        <result column="report_desc" property="reportDesc" jdbcType="VARCHAR"/>
+        <result column="create_person" property="createPerson" jdbcType="VARCHAR"/>
+    </resultMap>
+
+</mapper>

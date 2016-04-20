@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tv.vego.dp.mapper.SystemDictMapper">
+    <resultMap id="BaseResultMap" type="tv.vego.dp.model.SystemDict">
+        <result column="dict_type" property="dictType" jdbcType="VARCHAR"/>
+        <result column="dict_code" property="dictCode" jdbcType="VARCHAR"/>
+        <result column="dict_name" property="dictName" jdbcType="VARCHAR"/>
+        <result column="display_order" property="displayOrder" jdbcType="INTEGER"/>
+    </resultMap>
+
+</mapper>

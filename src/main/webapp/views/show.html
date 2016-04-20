@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../resource/themes/icon.css" />
+    <link rel="stylesheet" type="text/css" href="../resource/themes/default/easyui.css" />
+    <script type="text/javascript" src="../resource/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../resource/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../resource/js/dp/base.js"></script>
+    <script type="text/javascript">
+    	var basePath = "http://"+window.location.host+getContextPath()+"/";
+    	var objs = new Array(); 
+    	var types = new Array();
+    	var tables = new Array();
+		$(document).ready(function(){
+			//得到报表组id
+			var combid = GetQueryString("combId");
+			//数据列宽
+			var colwidth;
+			//查询报表组详细信息
+			$.ajax({
+				 url:basePath+"mng/comb/detail/"+combid,
+				 method:"get",
+				 dataType:"json",
+				 async: false,
+				 success:function(res){
+					 $('#conditions').append("<tr>");
+					 //加载查询组建
+			 		 $.each(res.queryWidgets,function(i,n){
+			 			if(i>0 && i%2==0){
+				 			$('#conditions').append("</tr><tr>");
+				 		}
+			 			//判断查询组建类别
+				 		$('#conditions').append("<td>&nbsp;&nbsp;&nbsp;"+n.widgetName+"："+"<input class=" + genStyleForSearch(n.elementType, n.style, n.format, n.defaultValue)+" id='"+n.elementId+"' ></td>");
+				 		//如果是下拉，加载option
+				 		if (n.elementType == 'combobox') {
+				 			//动态加载下拉框
+				 			$('#'+n.elementId).attr("data-options", "url:'"+basePath+"sys/dict/get/"+n.dictType+"',"+
+				 					"method:'get',valueField:'dictCode',textField:'dictName',panelWidth:350");
+							/* $.each(n.options,function(k,o){
+								$('#'+n.elementId).append("<option value='"+o.id+"'>"+o.text+"</option>");
+							}); */
+						}
+			 			//存储变量id
+				 		objs[i] = n.elementId;
+				 		types[i] = n.elementType;
+				 	});
+				 	$('#conditions').append("</tr><tr>");
+				 	//查询按钮
+				 	$('#conditions').append("<td colspan='4' align='right'>&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' class='easyui-linkbutton' onClick='reSearch()' data-options=\"iconCls:'icon-search'\">search</a></td></tr>");
+				 	//遍历加载报表数据
+				 	$.each(res.combDetails,function(i,n){
+					 	//生成待展示数据参数
+					 	var options = "rownumbers:true,singleSelect:true,collapsible:true,url:'"+basePath+"general/report/data/"+n.reportId+"',method:'get'";
+					 	$.ajax({
+						 	url:basePath+"general/report/meta/"+n.reportId,//报表列信息
+						 	method:"get",
+						 	dataType:"json",
+						 	async: false,
+						 	success:function(res1){
+						 		//生成报表展示table
+						 		$('#bodyid').append("<table id=\"table"+n.reportId+"\">"+res1.reportDesc);
+							 	$('#table'+n.reportId).append("<thead> <tr id=\"thread"+n.reportId+"\">	</tr></thead></table>");
+						 		//数据分页处理
+						 		if (res1.needPaging != 0) {
+							 		options = options + ",pagination:true,pageSize:"+res1.pageSize;
+								}
+						 		$('#table'+n.reportId).attr("title", res1.reportName);
+						 		$('#table'+n.reportId).attr("data-options", options);
+						 		$('#table'+n.reportId).attr("class", "easyui-datagrid");
+						 		$('#table'+n.reportId).attr("style", "width:99%;height:40%");
+						 		$.each(res1.columns,function(j,m){
+						 			//fieldwidth为空，默认150
+						 			//alert(m.fieldWidth);
+						 			if (m.fieldWidth == null) {
+						 				colwidth = 150;
+									}else {
+										colwidth = m.fieldWidth;
+									}
+						 			$('#thread'+n.reportId).append("<th data-options=\"field:'"+m.fieldName+"',width:"+colwidth+"\">" + m.fieldLabel + "</th>");
+						 		});
+					 		}
+				 		});
+					 	tables[i] = n.reportId;
+				 	});
+			 	}
+		 	});
+			$.parser.parse();	
+		 });
+		
+		function GetQueryString(name) {
+			 var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			 var r = window.location.search.substr(1).match(reg);
+			 if(r!=null)return  unescape(r[2]); return null;
+	    }
+		
+    </script>
+    
+</head>
+<body class="easyui-layout">
+		<div id="bodyid" data-options="region:'center'">
+			<div id="searchCondtion" class="easyui-panel ms-panel-outer" title="查询条件" data-options="collapsible:true"
+			style="width:99%;height:20%">
+				<table id="conditions">
+				</table>
+			</div>
+		</div>
+</body>
+</html>

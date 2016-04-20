@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tv.vego.dp.mapper.CombReportDetailMapper">
+    <resultMap id="BaseResultMap" type="tv.vego.dp.model.CombReportDetail">
+        <id column="comb_id" property="combId" jdbcType="INTEGER"/>
+        <id column="report_id" property="reportId" jdbcType="INTEGER"/>
+        <result column="display_order" property="displayOrder" jdbcType="INTEGER"/>
+    </resultMap>
+
+</mapper>

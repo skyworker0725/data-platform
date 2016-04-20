@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tv.vego.dp.mapper.ReportCatalogMapper">
+    <resultMap id="BaseResultMap" type="tv.vego.dp.model.ReportCatalog">
+        <id column="catalog_id" property="catalogId" jdbcType="INTEGER"/>
+        <result column="parent_catalog_id" property="parentCatalogId" jdbcType="INTEGER"/>
+        <result column="catalog_name" property="catalogName" jdbcType="VARCHAR"/>
+        <result column="display_order" property="displayOrder" jdbcType="INTEGER"/>
+    </resultMap>
+
+</mapper>

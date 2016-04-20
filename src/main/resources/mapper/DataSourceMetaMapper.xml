@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tv.vego.dp.mapper.DataSourceMetaMapper">
+    <resultMap id="BaseResultMap" type="tv.vego.dp.model.DataSourceMeta">
+        <id column="ds_id" property="dsId" jdbcType="INTEGER"/>
+        <result column="ds_name" property="dsName" jdbcType="VARCHAR"/>
+        <result column="driver_class" property="driverClass" jdbcType="VARCHAR"/>
+        <result column="ds_username" property="dsUsername" jdbcType="VARCHAR"/>
+        <result column="ds_passwd" property="dsPasswd" jdbcType="VARCHAR"/>
+        <result column="ds_url" property="dsUrl" jdbcType="VARCHAR"/>
+    </resultMap>
+
+</mapper>

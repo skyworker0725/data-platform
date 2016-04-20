@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tv.vego.dp.mapper.QueryWidgetDefineMapper">
+    <resultMap id="BaseResultMap" type="tv.vego.dp.model.QueryWidgetDefine">
+        <id column="widget_id" property="widgetId" jdbcType="INTEGER"/>
+        <result column="widget_name" property="widgetName" jdbcType="VARCHAR"/>
+        <result column="element_type" property="elementType" jdbcType="VARCHAR"/>
+        <result column="element_id" property="elementId" jdbcType="VARCHAR"/>
+        <result column="default_value" property="defaultValue" jdbcType="VARCHAR"/>
+        <result column="widget_desc" property="widgetDesc" jdbcType="VARCHAR"/>
+        <result column="ext_attrs" property="extAttrs" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectReportUseWidgets" resultMap="BaseResultMap">
+        select w.* from report_widget_use u, query_widget_define w
+        where u.report_id = #{reportId}
+        and u.widget_id = w.widget_id
+        order by u.display_order
+    </select>
+</mapper>
